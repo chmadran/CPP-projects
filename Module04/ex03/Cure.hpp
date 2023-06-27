@@ -1,36 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Contact.class.hpp                                  :+:      :+:    :+:   */
+/*   Cure.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: chmadran <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/19 17:05:07 by chmadran          #+#    #+#             */
-/*   Updated: 2023/06/20 16:09:57 by chmadran         ###   ########.fr       */
+/*   Created: 2023/06/27 09:29:25 by chmadran          #+#    #+#             */
+/*   Updated: 2023/06/27 09:59:22 by chmadran         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CONTACT_CLASS_H
-# define CONTACT_CLASS_H
+#ifndef CURE_H
+# define CURE_H
 
-# include <iomanip>
+#include "AMateria.hpp"
+#include "ICharacter.hpp"
 
-class Contact {
+class Cure : public AMateria {
 private:
-	std::string	_firstName;
-	std::string	_lastName;
-	std::string	_nickName;
-	std::string	_phoneNumber;
-	std::string	_darkestSecret;
-
+	std::string _type;
 public:
-	Contact();
-	~Contact();
+	Cure();
+	Cure(const Cure& other);
+	Cure& operator=(const Cure& other);
+	~Cure();
 
-	void	setContact(std::string _f, std::string _l, 
-			std::string _n, std::string _pn, std::string _ds);
-	void	printContact();
-	void	printTableContact(int index);
+	Cure* clone() const override;
+	void use(ICharacter& target);
+	std::string const & getType() const;
 };
 
 #endif

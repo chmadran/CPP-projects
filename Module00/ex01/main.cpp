@@ -5,101 +5,116 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: chmadran <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/19 16:22:38 by chmadran          #+#    #+#             */
-/*   Updated: 2023/06/20 17:04:17 by chmadran         ###   ########.fr       */
+/*   Created: 2023/06/27 14:16:29 by chmadran          #+#    #+#             */
+/*   Updated: 2023/06/27 17:47:49 by chmadran         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <iostream>
+#include "Phonebook.hpp"
+#include "Contact.hpp"
 #include <iomanip>
-#include "Phonebook.class.hpp"
-#include "Contact.class.hpp"
 
-int	ft_strcmp(char *s1, char *s2)
+void	ft_add(PhoneBook *phonebook, int i)
 {
-	int i = 0;
-	while (s1[i] && s2[i] && s1[i] == s2[i])
-		i++;
-	return (s1[i] - s2[i]);
-}
+	std::string _firstName;
+	std::string _lastName;
+	std::string _nickName;
+	std::string _phoneNumber;
+	std::string _darkestSecret;
 
-void	ft_addPhonebook(PhoneBook *phonebook)
-{
-	std::string	_firstName;
-	std::string	_lastName;
-	std::string	_nickName;
-	std::string	_phoneNumber;
-	std::string	_darkestSecret;
-	Contact		newContact;
-
-	std::cout << "[First Name] : ";
-	std::getline(std::cin, _firstName);
-	std::cout << "[Last Name] : ";
-	std::getline(std::cin, _lastName);
-	std::cout << "[Nick Name] : ";
-	std::getline(std::cin, _nickName);
-	std::cout << "[Phone Number] : ";
-	std::getline(std::cin, _phoneNumber);
-	std::cout << "[Darkest Secret] : ";
-	std::getline(std::cin, _darkestSecret);
-	newContact.setContact(_firstName, _lastName, _nickName,_phoneNumber, _darkestSecret);
-	(*phonebook).setPhonebookContact(newContact);
-}
-
-/*Display the saved contacts as a list of 4 columns: index, first name, last
-name and nickname. */
-
-void	displayPhonebook(PhoneBook& phonebook)
-{
-	std::cout << std::setw(10) << std::right << "#" << " | ";
-	std::cout << std::setw(10) << std::right << "[First Name]" << " | ";
-	std::cout << std::setw(10) << std::right << "[Last Name]" << " | ";
-	std::cout << std::setw(10) << std::right << "[Nick Name]" << std::endl;
-	for (int i = 0; i < phonebook.countContacts; i++)
-	{
-		phonebook.phonebook[i].printTableContact(i);
-	}
-}
-
-void	ft_searchPhonebook(PhoneBook phonebook)
-{
-	std::string	index;
-	int			contactIndex;
-
-	displayPhonebook(phonebook);
-	std::cout << "Enter contact index :";
-	std::getline(std::cin, index);
-	contactIndex = atoi(index.c_str());
-	if (contactIndex < 8) {
-		phonebook.phonebook[contactIndex].printContact();
-	}
-	else {
-		std::cout << "Index out of range."; }
-}
-
-int	main(int argc, char **argv)  {
+	std::cout << "FIRST NAME : ";
+	std::cin >> _firstName;
+	std::cout << "LAST NAME : ";
+	std::cin  >>  _lastName;
+	std::cout << "NICK NAME : ";
+	std::cin  >>  _nickName;
+	std::cout << "PHONE NUMBER : ";
+	std::cin  >>  _phoneNumber;
+	std::cout << "DARKEST SECRET : ";
+	std::cin  >>  _darkestSecret;
 	
-	std::string	user_command;
-	Contact		firstContact;
-	PhoneBook	Phonebook;
+	(*phonebook).addContact(i, _firstName, _lastName, _nickName,_phoneNumber, _darkestSecret);
+}
 
-	(void)argc;
-	(void)argv;
-
-	std::cout << "Please enter a command (SEARCH / ADD / EXIT)\n> ";
-	std::getline(std::cin, user_command);
-	while (!std::cin.eof())
+std::string	ft_display_line(std::string input) {
+	if (input.length() >= 10)
 	{
-		if (user_command == "ADD") {
-			ft_addPhonebook(&Phonebook); }
-		else if (user_command == "SEARCH") {
-			ft_searchPhonebook(Phonebook); }
-		else if (user_command == "EXIT") {
-			return (0); }
-		else if (!std::cin.eof()) {
-			std::cout << "Only ADD, SEARCH and EXIT commands are accepted\n"; }
+		input.resize(9);
+		input.resize(10, '.');
+	}
+	return input;
+}
+
+void	ft_display_contact(PhoneBook *phonebook, int indexSearched)
+{
+	(*phonebook).getContact(indexSearched).printContact();
+}
+
+int	ft_display_phonebook(PhoneBook *phonebook, int size) {
+	
+	std::string _firstName;
+	std::string _lastName;
+	std::string _nickName;
+	std::string _phoneNumber;
+
+	// HEADER
+	std::cout << std::endl;
+	std::cout << std::setw(10) << "Index" << "|";
+	std::cout << std::setw(10) << "First Name" << "|";
+	std::cout << std::setw(10) << "Last Name" << "|";
+	std::cout << std::setw(10) << "Nickname" << "|" << std::endl << std::endl;
+
+	for (int i = 0; i < size; i++) {
+		_firstName = ft_display_line((*phonebook).getFirstName(i));
+		_lastName = ft_display_line((*phonebook).getLastName(i));
+		_nickName = ft_display_line((*phonebook).getNickName(i));
+		std::cout << std::setw(10) << i << "|";
+		std::cout << std::setw(10) << _firstName << "|";
+		std::cout << std::setw(10) << _lastName << "|";
+		std::cout << std::setw(10) << _nickName<< "|" << std::endl;
+	}
+	return (1);
+}
+
+void	ft_search(PhoneBook *phonebook, int i) {
+		int	indexSearched;
+
+		if (ft_display_phonebook(phonebook, i)) {
+			std::cout << std::endl << "Enter the INDEX of the user you're looking for :" << std::endl;
+			std::cin >> indexSearched;
+			std::cout << std::endl;
+			if (indexSearched >= 0 && indexSearched <= i)
+				ft_display_contact(phonebook, indexSearched);
+			else
+				std::cout << "Incorrect Index. Retry.";
+		}
+}
+
+int main(void){
+	
+	int				i = 0;
+	PhoneBook		phonebook;
+	std::string 	user_input;
+
+	while (1)
+	{
+		std::cout << "ENTER VALID ARGUMENT(ADD, SEARCH, EXIT) : ";
+		std::cin >> user_input;
+		if (user_input == "ADD")
+		{
+			if (i >= 7) {
+				std::cout << "Cannot add more than 8 contacts. Oldest one will be replaced." << std::endl;
+				i = 0;
+			}
+			ft_add(&phonebook, i);
+			i++;
+		}
+		else if (user_input == "SEARCH")
+			ft_search(&phonebook, i);
+		else if (user_input == "EXIT")
+			return 0;
+		else 
+			std::cout << "Invalid argument. Enter new one.";
 		std::cout << std::endl;
-		std::cout << "Please enter a command (SEARCH / ADD / EXIT)\n> ";
-		std::getline(std::cin, user_command);
-	}	
+	}
 }

@@ -1,30 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Phonebook.class.hpp                                :+:      :+:    :+:   */
+/*   Ice.hpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: chmadran <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/19 15:50:31 by chmadran          #+#    #+#             */
-/*   Updated: 2023/06/20 16:46:17 by chmadran         ###   ########.fr       */
+/*   Created: 2023/06/27 09:29:33 by chmadran          #+#    #+#             */
+/*   Updated: 2023/06/27 10:01:13 by chmadran         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PHONEBOOK_CLASS_H
-# define PHONEBOOK_CLASS_H
+#ifndef ICE_H
+# define ICE_H
 
-# include "Contact.class.hpp"
-# include <iomanip>
+# include "AMateria.hpp"
 
-class PhoneBook {
+class Ice : public AMateria {
+private:
+	std::string _type;
 public:
-	Contact			phonebook[8];
-	int				countContacts;
+	Ice();
+	Ice(const Ice& other);
+	Ice& operator=(const Ice& other);
+	~Ice();
 
-	PhoneBook();
-	~PhoneBook();
-
-	void	setPhonebookContact(const Contact& contact);
+	Ice* clone() const override;
+	void use(ICharacter& target);
+	std::string const & getType() const;
 };
 
 #endif

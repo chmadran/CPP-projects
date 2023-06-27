@@ -6,16 +6,16 @@
 #    By: chmadran <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/26 14:08:03 by chmadran          #+#    #+#              #
-#    Updated: 2023/06/26 14:59:27 by chmadran         ###   ########.fr        #
+#    Updated: 2023/06/27 11:40:02 by chmadran         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 #---------VARIABLES-----------
 NAME		= materia
-SRC			= main.cpp Materia.cpp
+SRC			= main.cpp AMateria.cpp Cure.cpp Ice.cpp Character.cpp MateriaSource.cpp
 OBJ			= $(SRC:.cpp=.o)
-COMP		= c++
-FLAGS		= -Wall -Werror -Wextra
+COMP		= clang++
+FLAGS		= -Wall -Werror -Wextra 
 EXEC		= materia
 
 #---------COLORS--------------

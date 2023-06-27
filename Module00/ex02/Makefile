@@ -6,17 +6,17 @@
 #    By: chmadran <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/19 14:17:38 by chmadran          #+#    #+#              #
-#    Updated: 2023/06/27 14:36:44 by chmadran         ###   ########.fr        #
+#    Updated: 2023/06/27 17:51:12 by chmadran         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 #---------VARIABLES-----------
-NAME		= phonebook
-SRC			= main.cpp Contact.cpp Phonebook.cpp
+NAME		= account
+SRC			= tests.cpp Account.cpp
 OBJ			= $(SRC:.cpp=.o)
 COMP		= c++
 FLAGS		= -Wall -Werror -Wextra -std=c++98
-EXEC		= phonebook
+EXEC		= account
 
 #---------COLORS--------------
 

@@ -6,46 +6,42 @@
 #    By: chmadran <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/19 14:17:38 by chmadran          #+#    #+#              #
-#    Updated: 2023/06/21 09:39:39 by chmadran         ###   ########.fr        #
+#    Updated: 2023/06/27 14:11:48 by chmadran         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-# ---------VARIABLES--------------
+#---------VARIABLES-----------
+NAME		= megaphone
+SRC			= Megaphone.cpp
+OBJ			= $(SRC:.cpp=.o)
+COMP		= c++
+FLAGS		= -Wall -Werror -Wextra -std=c++98
+EXEC		= megaphone
 
-NAME		=	megaphone
-SRC			=	megaphone.cpp
-OBJ		=	$(SRC:.cpp=.o)
-COMPILE		=	clang++
-FLAGS		=	-Wall -Wextra -Werror -std=c++98
-EXE_NAME	=	-o megaphone
-EXEC		=	megaphone
+#---------COLORS--------------
 
-# ------------COLORS--------------
+GREEN 		= \033[32m
+NO_COLOR	= \033[0m
 
-GREEN		=	\033[32m
-YELLOW		=	\033[33m
-NO_COLOR	=	\033[0m
-
-# ------------RULES---------------
+#---------RULES---------------
 
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	$(COMPILE) $(FLAGS) $(OBJ) $(EXE_NAME)
-	@echo "\n$(GREEN)Executable ready!$(NO_COLOR)"
+	@$(COMP) $(FLAGS) $(OBJ) -o $(EXEC)
+	@echo "\n$(GREEN) EXECUTABLE READY ! $(NO_COLOR)\n"
 
-.cpp.o:
-	${COMPILE} ${FLAGS} -c $< -o ${<:.cpp=.o}
+object:
+	@${COMP} ${FLAGS} -c $< -o ${<:.cpp=.o}
 
-	
 clean:
-	rm -rf $(OBJ)
-	@echo "\n$(YELLOW)Object file removed.$(NO_COLOR)"
+	@rm -rf $(OBJ)
+	@echo "\n$(GREEN)OBJECT FILES DELETED.$(NO_COLOR)"
 
 fclean: clean
-	rm -rf $(EXEC)
-	@echo "\n$(YELLOW)Executable deleted.$(NO_COLOR)"
+	@rm -rf $(EXEC)
+	@echo "\n$(GREEN)EXECUTABLE DELETED.$(NO_COLOR)"
 
-re:	fclean all
+re: clean fclean all
 
-.PHONY:	all clean fclean re
+.PHONY: all object clean fclean re
