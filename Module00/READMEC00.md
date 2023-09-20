@@ -97,3 +97,5 @@ USED :
 * `std::cin.clear():` If an input operation fails (e.g., the user enters a letter instead of a number), std::cin enters a fail state. std::cin.clear() is used to clear this fail state. It resets the stream state flags so that further operations can be attempted.
 
 * `std::cin.ignore():` After clearing the fail state, std::cin.ignore() is used to ignore any remaining characters in the input buffer. This is important because if the user entered a non-integer value, it may still be in the input buffer. ignore() discards it.
+
+* BE CAREFUL to protect std::cin
