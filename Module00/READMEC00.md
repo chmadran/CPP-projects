@@ -85,3 +85,15 @@ void MyClass::printInfo() {
 </details>
 
 </details>
+
+USED : 
+
+* `.compare` instead of strcmp
+  
+* `std::flush` ensures that the output is immediately displayed on the console, without waiting for a newline character (normally, output is buffered and displayed only when a newline character is encountered or when the buffer is full).
+  
+* `std::cin.fail()` is an expression that checks if the most recent input operation on std::cin has failed. It returns a boolean value (true if an error occurred, false otherwise). In this context, if the user enters something that is not a valid integer (e.g., a letter or a symbol), std::cin.fail() will return true.
+
+* `std::cin.clear():` If an input operation fails (e.g., the user enters a letter instead of a number), std::cin enters a fail state. std::cin.clear() is used to clear this fail state. It resets the stream state flags so that further operations can be attempted.
+
+* `std::cin.ignore():` After clearing the fail state, std::cin.ignore() is used to ignore any remaining characters in the input buffer. This is important because if the user entered a non-integer value, it may still be in the input buffer. ignore() discards it.
