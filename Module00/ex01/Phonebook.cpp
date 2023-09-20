@@ -6,43 +6,66 @@
 /*   By: chmadran <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/27 14:32:01 by chmadran          #+#    #+#             */
-/*   Updated: 2023/06/27 17:47:38 by chmadran         ###   ########.fr       */
+/*   Updated: 2023/09/20 11:31:49 by chmadran         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Phonebook.hpp"
 
-PhoneBook::PhoneBook(){
-	//std::cout << "PhoneBook default constructor" << std::endl;
+PhoneBook::PhoneBook(void){
+	return ;
 }
 
-PhoneBook::~PhoneBook(){
-	//std::cout << "PhoneBook default destructor" << std::endl;
+PhoneBook::~PhoneBook(void) {
+	return ;
 }
 
-void	PhoneBook::addContact(int i, std::string fn, std::string ln, std::string nn, 
-			std::string pn, std::string ds) {
-	phonebook[i].setContact(fn, ln, nn, pn, ds);
+void	PhoneBook::begin(void) const {
+	std::cout << std::endl;
+	std::cout << "📞 Welcome to Your PhoneBook 📖" << std::endl;
+	std::cout << std::endl;
+	std::cout << "--------------USAGE---------------" << std::endl;
+	std::cout << "ADD\t: To add a contact." << std::endl;
+	std::cout << "SEARCH\t: To search for a contact." << std::endl;
+	std::cout << "EXIT\t: to quite the PhoneBook." << std::endl;
+	std::cout << "----------------------------------" << std::endl;
+	std::cout << std::endl;
 }
 
-Contact	PhoneBook::getContact(int i){
-	return phonebook[i];
+void	PhoneBook::addContact(std::string fn, std::string ln, std::string nn, 
+			std::string pn, std::string ds)
+{
+	static int	i;
+	phonebook[i % 8].setContact(fn, ln, nn, pn, ds);
+	i++;
 }
 
-std::string PhoneBook::getFirstName(int i) const {
-	return phonebook[i].getFirstName();
-}
-std::string PhoneBook::getLastName(int i) const {
-	return phonebook[i].getLastName();
-}
-std::string PhoneBook::getNickName(int i) const {
-	return phonebook[i].getNickName();
+int	PhoneBook::readIndex(void) const {
+	int		input = -1;
+	bool	valid = false;
+
+	while (!valid)
+	{
+		std::cout << "Please enter the contact index: " << std::flush;
+		std::cin >> input;
+		if (std::cin.fail())
+		{
+			std::cin.clear();
+			std::cin.ignore();
+		}
+		else if (input < 0 || input > 7)
+			std::cout << "Invalid index; please re-enter." << std::endl;
+		else
+			valid = true;
+	}
+	return (input);
 }
 
-std::string PhoneBook::getPhoneNumber(int i) const {
-	return phonebook[i].getPhoneNumber();
+void	PhoneBook::displayPhonebook(void) const {
+	for (int i = 0; i < 7; i++)
+		phonebook[i].displayContact(i);
 }
 
-std::string PhoneBook::getDarkestSecret(int i) const {
-	return phonebook[i].getDarkestSecret();
+void	PhoneBook::displayContact(int index) const {
+	phonebook[index].viewContact(index);
 }

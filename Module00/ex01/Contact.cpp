@@ -6,18 +6,18 @@
 /*   By: chmadran <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/27 14:31:05 by chmadran          #+#    #+#             */
-/*   Updated: 2023/06/27 17:07:09 by chmadran         ###   ########.fr       */
+/*   Updated: 2023/09/20 11:27:55 by chmadran         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Contact.hpp"
 
-Contact::Contact(){
-	//std::cout << "Contact default constructor" << std::endl;
+Contact::Contact(void) {
+	return ;
 }
 
-Contact::~Contact(){
-	//sstd::cout << "Contact default destructor" << std::endl;
+Contact::~Contact(void) {
+	return ;
 }
 
 void	Contact::setContact(std::string fn, std::string ln, std::string nn, 
@@ -29,26 +29,27 @@ void	Contact::setContact(std::string fn, std::string ln, std::string nn,
 	_darkestSecret = ds;
 }
 
-void	Contact::printContact() const {
-	std::cout << "[FIRST NAME] : " << _firstName << std::endl;
-	std::cout << "[LAST NAME] : " << _lastName << std::endl;
-	std::cout << "[NICK NAME] : " << _nickName << std::endl;
-	std::cout << "[PHONE NUMBER] : " << _phoneNumber << std::endl;
-	std::cout << "[DARKEST SECRET] : " << _darkestSecret << std::endl;
+std::string Contact::printLen(std::string str) const {
+	if (str.length() > 10)
+		return str.substr(0, 9) + ".";
+	return (str);
 }
 
-std::string Contact::getFirstName() const {
-	return _firstName;
+void	Contact::displayContact(int index) const {
+	std::cout << "|" << std::setw(10) << index << std::flush;
+	std::cout << "|" << std::setw(10) << printLen(_firstName) << std::flush;
+	std::cout << "|" << std::setw(10) << printLen(_lastName) << std::flush;
+	std::cout << "|" << std::setw(10) << printLen(_nickName) << std::flush;
+	std::cout << "|" << std::endl;
 }
-std::string Contact::getLastName() const {
-	return _lastName;
-}
-std::string Contact::getNickName() const {
-	return _nickName;
-}
-std::string Contact::getPhoneNumber() const {
-	return _phoneNumber;
-}
-std::string Contact::getDarkestSecret() const {
-	return _darkestSecret;
+
+void	Contact::viewContact(int index) const {
+	std::cout << std::endl;
+	std::cout << "CONTACT #" << index << std::endl;
+	std::cout << "First Name:\t" << _firstName << std::endl;
+	std::cout << "Last Name:\t" << _lastName << std::endl;
+	std::cout << "Nickname:\t" << _nickName << std::endl;
+	std::cout << "Phone Number:\t" << _phoneNumber << std::endl;
+	std::cout << "Darkest Secret:\t" << _darkestSecret << std::endl;
+	std::cout << std::endl;
 }

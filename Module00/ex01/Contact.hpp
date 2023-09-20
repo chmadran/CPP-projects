@@ -6,7 +6,7 @@
 /*   By: chmadran <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/27 14:30:04 by chmadran          #+#    #+#             */
-/*   Updated: 2023/06/27 15:25:35 by chmadran         ###   ########.fr       */
+/*   Updated: 2023/09/20 11:28:01 by chmadran         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,21 +14,19 @@
 # define CONTACT_H
 
 # include <iostream>
+# include <iomanip>
 
 class Contact {
 	public:
-		Contact();
-		~Contact();
+		Contact(void);
+		~Contact(void);
 
-		void	setContact(std::string fn, std::string ln, std::string nn, 
+		void		setContact(std::string fn, std::string ln, std::string nn, 
 			std::string pn, std::string ds);
+		void		displayContact(int index) const;
+		void		viewContact(int index) const;
+		std::string	printLen(std::string str) const;
 		
-		void		printContact() const;
-		std::string getFirstName() const;
-		std::string getLastName() const;
-		std::string getNickName() const;
-		std::string getPhoneNumber() const;
-		std::string getDarkestSecret() const;
 	private:
 		std::string	_firstName;
 		std::string	_lastName;
