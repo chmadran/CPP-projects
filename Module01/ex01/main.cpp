@@ -6,23 +6,23 @@
 /*   By: chmadran <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 11:05:25 by chmadran          #+#    #+#             */
-/*   Updated: 2023/06/21 17:18:47 by chmadran         ###   ########.fr       */
+/*   Updated: 2023/09/20 16:32:26 by chmadran         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Zombie.hpp"
 
+
 int main()
 {
 	int		N;
-	std::cout << "Enter the number of zombies in the hord, please: ";
-	std::cin >> N;
+	Zombie	*zombies;
 	
-	Zombie	*zombies = zombieHorde(N, "zombi");
+	N = 10; 
+	zombies = zombieHorde(N, "zombi");
 	for (int i = 0; i < N; i++) {
-		zombies[i].annouce();
+		zombies[i].announce();
 	}
-
 	delete [] zombies;
-	return 0;
+	return (0);
 }

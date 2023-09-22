@@ -6,7 +6,7 @@
 /*   By: chmadran <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 11:27:07 by chmadran          #+#    #+#             */
-/*   Updated: 2023/06/21 17:00:55 by chmadran         ###   ########.fr       */
+/*   Updated: 2023/09/20 16:47:22 by chmadran         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,5 +31,5 @@ int main()
 		club.setType("some other type of club");
 		jim.attack();
 	}
-return 0; 
+	return (0);
 }
