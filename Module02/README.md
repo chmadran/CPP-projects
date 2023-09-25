@@ -96,8 +96,23 @@ The copy constructor is a special member function in a class that is used to cre
 A new object is created based on an existing object.
 An object is passed by value as an argument to a function.
 An object is returned by value from a function.
+It is prototyped as follows :
 
 `ClassName(const ClassName& other);`
+
+The copy constructor can be called through :
+
+* **Direct Initialization:**
+```
+MyClass obj1;  // Default constructor is called
+MyClass obj2(obj1);  // Copy constructor is called
+```
+* **Initialization via Assignment:**
+
+```
+MyClass obj1;  // Default constructor is called
+MyClass obj2 = obj1;  // Copy constructor is called
+```
 
 </details>
 
