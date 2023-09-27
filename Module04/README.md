@@ -300,5 +300,29 @@ When you have a pointer or reference of type Animal*, you can assign it to an ob
 
 </details>
 
+<details>
+    <summary>PURE ABSTRACT CLASS</summary>
 
+A default or base class can be designed to be not instantiable by declaring one or more of its member functions as pure virtual functions. A pure virtual function is a function in a base class that is declared without a body (no implementation) and is intended to be overridden by derived classes.
 
+**No Implementation:** A pure virtual function has no implementation in the base class. This means that the base class cannot provide a complete and meaningful behavior on its own.
+
+**Forced Override:** Derived classes must provide an implementation for the pure virtual function. This forces any class derived from the base class to implement this function, making the derived class complete and functional.
+
+**Abstract Class:** A class that contains one or more pure virtual functions is called an abstract class. Abstract classes cannot be instantiated directly because they lack a complete set of functionality.
+
+ In C++, the = 0 syntax is used to declare a function as a pure virtual function.
+
+```virtual void functionName() = 0;```
+
+Here's what this means:
+
+**virtual:** Indicates that this function is meant to be overridden in derived classes. It allows for dynamic binding, which means the correct function implementation will be determined at runtime based on the type of object.    
+
+**void functionName():** This is the declaration of the function. It could be any function with any return type and parameters.    
+
+**= 0:** This is what makes the function pure virtual. It means that this function must be overridden in any derived class. A class that contains a pure virtual function is considered an abstract class, and it cannot be instantiated directly.    
+
+Any class that contains at least one pure virtual function is considered abstract and cannot be instantiated on its own. Instead, it must be inherited by a derived class, and that derived class must provide an implementation for the pure virtual function.
+
+</details>
