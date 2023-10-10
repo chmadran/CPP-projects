@@ -327,4 +327,22 @@ The specific values and arrangement of elements in your dataset can influence th
 
 Overall, the differences in sorting times between `std::vector` and `std::deque` are a result of a combination of these factors. It's not uncommon for different data structures to have varying performance characteristics for different types of operations.
 
+
+Le code que vous avez partagé est une implémentation d'un algorithme de tri appelé "Tri Fusion" (Merge Sort) en C++. Voici une explication en termes généraux :
+
+La fonction sortVector trie un vecteur d'entiers en utilisant l'algorithme de tri fusion.
+
+Si la taille du vecteur est inférieure ou égale à 1, il est considéré déjà trié et la fonction se termine.
+Sinon, si la taille du vecteur est inférieure ou égale à un seuil (dans ce cas 16), la fonction utilise un autre algorithme de tri appelé "Tri par Insertion" (insertVector).
+Sinon, la fonction divise le vecteur en deux moitiés, trie chaque moitié récursivement en appelant sortVector, puis fusionne les deux moitiés triées en appelant mergeVector.
+La fonction mergeVector fusionne deux vecteurs triés (gauche et droite) en un seul vecteur trié.
+
+Elle initialise trois indices : i pour le vecteur final, j pour le vecteur de gauche, et k pour le vecteur de droite.
+Tant que j et k sont inférieurs à leurs tailles respectives, elle compare les éléments de gauche et de droite et les ajoute au vecteur final en incrémentant les indices appropriés.
+La fonction insertVector trie un vecteur en utilisant l'algorithme de tri par insertion.
+
+Elle parcourt le vecteur à partir du deuxième élément.
+Pour chaque élément, elle le compare avec les éléments précédents et le place à la bonne position dans la séquence triée.
+En bref, le code met en œuvre l'algorithme de tri fusion, qui divise récursivement le vecteur en sous-vecteurs, les trie individuellement, puis les fusionne pour obtenir un vecteur trié. Si le vecteur est assez petit, il utilise l'algorithme de tri par insertion pour gagner en efficacité.
+
 </details>
