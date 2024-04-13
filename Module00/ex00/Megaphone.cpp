@@ -6,7 +6,7 @@
 /*   By: chmadran <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 14:17:40 by chmadran          #+#    #+#             */
-/*   Updated: 2023/09/20 14:00:12 by chmadran         ###   ########.fr       */
+/*   Updated: 2023/06/27 14:12:23 by chmadran         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ int main(int argc, char **argv)
 		int len = current.length();
 		for(int j = 0 ; j < len ; j++)
 			std::cout << (char)toupper(current[j]);
+		std::cout << " ";
 	}
 	std::cout << std::endl;
 	return (0);

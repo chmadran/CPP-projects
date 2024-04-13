@@ -6,7 +6,7 @@
 /*   By: chmadran <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/27 14:32:01 by chmadran          #+#    #+#             */
-/*   Updated: 2023/09/20 14:01:15 by chmadran         ###   ########.fr       */
+/*   Updated: 2023/09/20 11:31:49 by chmadran         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,7 @@ int	PhoneBook::readIndex(void) const {
 	while (!valid)
 	{
 		std::cout << "Please enter the contact index: " << std::flush;
-		if (!(std::cin >> input))
-			return (-1);
+		std::cin >> input;
 		if (std::cin.fail())
 		{
 			std::cin.clear();
@@ -63,7 +62,7 @@ int	PhoneBook::readIndex(void) const {
 }
 
 void	PhoneBook::displayPhonebook(void) const {
-	for (int i = 0; i <= 7; i++)
+	for (int i = 0; i < 7; i++)
 		phonebook[i].displayContact(i);
 }
 
